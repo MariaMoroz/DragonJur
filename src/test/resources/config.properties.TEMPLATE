@@ -1,0 +1,8 @@
+browser=chrome
+base_url=
+username=
+password=
+headless=false
+slowMo=1500
+width=1920
+height=1080

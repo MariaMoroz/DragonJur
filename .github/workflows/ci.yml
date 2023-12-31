@@ -1,0 +1,48 @@
+name: Playwright Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-test:
+    name: 'Run tests'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build & Install
+        run: mvn -B install -D skipTests --no-transfer-progress
+
+      - name: Install Playwright
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+
+      - name: Run tests
+        run: mvn test
+        env:
+          BROWSER_OPTIONS: browser=chrome;width=1920;height=1080;headless=true;slowMo=0
+          WEB_OPTIONS: username=${{ secrets.USERNAME }};password=${{ secrets.PASSWORD }};base_url=${{ secrets.BASE_URL}}
+          CI_RUN: true
+
+      - name: Create test report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Test Execution Report
+          path: target/surefire-reports/TEST-*.xml
+          reporter: java-junit
+
+      - name: Attach test trace
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: testTracing
+          path: testTracing/
