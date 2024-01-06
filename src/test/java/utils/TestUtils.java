@@ -10,4 +10,10 @@ public class TestUtils {
 
         return listValues.get(random.nextInt(listValues.size()));
     }
+
+    public static int getRandomInt(int min, int max) {
+        Random random = new Random();
+
+        return random.nextInt(max - min) + min;
+    }
 }
