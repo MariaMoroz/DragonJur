@@ -13,7 +13,8 @@ public class HomeTest extends BaseTest {
 
     @Test
     public void testLoginNavigation() {
-        assertThat(getPage()).hasURL(getBaseUrl() + "/home");
+
+        assertThat(getPage()).hasURL(ProjectProperties.BASE_URL + "/home");
     }
 
     @DataProvider
