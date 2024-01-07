@@ -1,6 +1,8 @@
 package utils;
 
 
+import tests.BaseTest;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -44,8 +46,8 @@ public class ProjectProperties {
                 try {
                     FileInputStream fileInputStream = new FileInputStream("./src/test/resources/config.properties");
                     if (fileInputStream == null) {
-                        System.out.println("ERROR: The \u001B[31mconfig.properties\u001B[0m file not found.");
-                        System.out.println("You need to create it from config.properties.TEMPLATE file.");
+                        BaseTest.log.info("ERROR: The \u001B[31mconfig.properties\u001B[0m file not found.");
+                        BaseTest.log.info("You need to create it from config.properties.TEMPLATE file.");
                         System.exit(1);
                     }
                     properties.load(fileInputStream);
