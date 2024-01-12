@@ -20,4 +20,18 @@ public class HomePage extends BaseLocator {
     public Locator getStudyThisButton() {
         return studyThisButton;
     }
+
+    public TestTutorPage initiateTest() {
+
+        new HomePage(getPage(), getPlaywright())
+                .clickTestsMenu()
+                .cancelDialogIfVisible()
+                .clickDomainsButton()
+                .clickRandomCheckbox()
+                .clickTutorButton()
+                .inputNumberOfQuestions("1")
+                .clickGenerateAndStartButton();
+
+        return new TestTutorPage(getPage(), getPlaywright());
+    }
 }

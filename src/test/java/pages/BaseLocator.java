@@ -75,7 +75,7 @@ abstract class BaseLocator extends BasePage {
         return getPage().getByRole(AriaRole.DIALOG);
     }
 
-    protected  void cancelDialog() {
+    protected void cancelDialog() {
         if (dialog().isVisible()) {
             getPage().onDialog(Dialog::dismiss);
             button("Cancel").click();
