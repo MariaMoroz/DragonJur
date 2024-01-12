@@ -81,4 +81,11 @@ abstract class BaseLocator extends BasePage {
             button("Cancel").click();
         }
     }
+
+    protected void endTestDialog() {
+        if (dialog().isVisible()) {
+            getPage().onDialog(Dialog::dismiss);
+            button("Yes").click();
+        }
+    }
 }

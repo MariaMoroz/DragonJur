@@ -12,6 +12,7 @@ public class TestListPage extends BaseLocator {
     private final Locator numberOfQuestionsInputField = getPage().locator("input[name = 'numberOfQuestions']");
     private final Locator generateAndStartButton = button("Generate & Start");
     private final Locator listCheckboxes = waitForListOfElementsLoaded("button:has(input[type='checkbox'])");
+    private final Locator numberMarked = text("Marked").locator("span");
 
     public TestListPage(Page page, Playwright playwright) {
         super(page, playwright);
@@ -47,5 +48,9 @@ public class TestListPage extends BaseLocator {
     public TestListPage cancelDialogIfVisible() {
         cancelDialog();
         return this;
+    }
+
+    public Locator getNumberMarked() {
+        return numberMarked;
     }
 }
