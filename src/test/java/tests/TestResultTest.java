@@ -1,4 +1,5 @@
 package tests;
 
-public class TestResultTest {
+public class TestResultTest extends BaseTest {
+
 }
