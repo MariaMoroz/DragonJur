@@ -92,11 +92,15 @@ public abstract class BaseTest {
         page.locator("//button[@type='submit']").click();
     }
 
-    public Page getPage() {
+    protected Page getPage() {
         return page;
     }
 
-    public Playwright getPlaywright() {
+    protected Playwright getPlaywright() {
         return playwright;
+    }
+
+    protected void waitForPageLoad(String endPoint) {
+        getPage().waitForURL(ProjectProperties.BASE_URL + endPoint);
     }
 }

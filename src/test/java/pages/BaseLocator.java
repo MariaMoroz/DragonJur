@@ -1,5 +1,6 @@
 package pages;
 
+import com.microsoft.playwright.Dialog;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
@@ -48,6 +49,10 @@ abstract class BaseLocator extends BasePage {
         return getPage().getByRole(AriaRole.RADIO, new Page.GetByRoleOptions().setName(text));
     }
 
+    protected Locator radio() {
+        return getPage().getByRole(AriaRole.RADIO);
+    }
+
     protected Locator alert() {
         return getPage().getByRole(AriaRole.ALERT);
     }
@@ -58,5 +63,22 @@ abstract class BaseLocator extends BasePage {
 
     protected void clickButton(String text) {
         button(text).click();
+    }
+
+    protected Locator waitForListOfElementsLoaded(String string) {
+        Locator list = getPage().locator(string);
+        list.last().waitFor();
+        return list;
+    }
+
+    protected Locator dialog() {
+        return getPage().getByRole(AriaRole.DIALOG);
+    }
+
+    protected  void cancelDialog() {
+        if (dialog().isVisible()) {
+            getPage().onDialog(Dialog::dismiss);
+            button("Cancel").click();
+        }
     }
 }
