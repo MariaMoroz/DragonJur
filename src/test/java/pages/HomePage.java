@@ -4,7 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
-public class HomePage extends BaseLocator {
+public class HomePage extends SideMenuPage {
     private final Locator studyThisButton = button("Study This");
 
     public HomePage(Page page, Playwright playwright) {
@@ -12,19 +12,7 @@ public class HomePage extends BaseLocator {
     }
 
     public Locator getStudyThisButton() {
+
         return studyThisButton;
-    }
-
-    public TestTutorPage initiateTest() {
-
-        new HomePage(getPage(), getPlaywright())
-                .clickTestsMenu()
-                .cancelDialogIfVisible()
-                .clickDomainsButton()
-                .clickRandomCheckbox()
-                .inputNumberOfQuestions("1")
-                .clickGenerateAndStartButton();
-
-        return new TestTutorPage(getPage(), getPlaywright());
     }
 }

@@ -61,8 +61,8 @@ abstract class BaseLocator extends BasePage {
         return getPage().getByRole(AriaRole.IMG, new Page.GetByRoleOptions().setName(text));
     }
 
-    protected void clickButton(String text) {
-        button(text).click();
+    protected Locator dialog() {
+        return getPage().getByRole(AriaRole.DIALOG);
     }
 
     protected Locator waitForListOfElementsLoaded(String string) {
@@ -71,44 +71,10 @@ abstract class BaseLocator extends BasePage {
         return list;
     }
 
-    protected Locator dialog() {
-        return getPage().getByRole(AriaRole.DIALOG);
-    }
-
     protected void cancelDialog() {
         if (dialog().isVisible()) {
             getPage().onDialog(Dialog::dismiss);
             button("Cancel").click();
         }
-    }
-
-    protected void endTestDialog() {
-        if (dialog().isVisible()) {
-            getPage().onDialog(Dialog::dismiss);
-            button("Yes").click();
-        }
-    }
-
-    protected boolean waitForLocatorVisible(Locator locator) {
-        locator.waitFor();
-        if (locator.isVisible()) {
-            return true;
-        }
-        return false;
-    }
-
-    public HomePage clickHomeMenu() {
-        exactButton("Home").click();
-        return new HomePage(getPage(), getPlaywright());
-    }
-
-    public FlashcardPage clickFlashcardMenu() {
-        exactButton("Flashcards").click();
-        return new FlashcardPage(getPage(), getPlaywright());
-    }
-
-    public TestListPage clickTestsMenu() {
-        exactButton("Tests").click();
-        return new TestListPage(getPage(), getPlaywright());
     }
 }
