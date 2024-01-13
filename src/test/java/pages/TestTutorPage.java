@@ -23,16 +23,16 @@ public class TestTutorPage extends BaseLocator {
 
     public TestTutorPage clickMarkForReviewButtonIfVisible() {
 
-        if (markForReviewButton.isVisible()) {
-            markForReviewButton.click();
-        }
+        markForReviewButton.waitFor();
+        markForReviewButton.click();
+
         return this;
     }
 
     public TestTutorPage clickAddToFlashCardButtonIfVisible() {
-        if (addToFlashcardButton.isVisible()) {
-            addToFlashcardButton.click();
-        }
+
+        addToFlashcardButton.waitFor();
+        addToFlashcardButton.click();
         return this;
     }
 
