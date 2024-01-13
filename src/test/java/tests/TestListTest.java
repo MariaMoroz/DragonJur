@@ -14,7 +14,6 @@ import static utils.ProjectProperties.BASE_URL;
 
 public class TestListTest extends BaseTest {
 
-    @Ignore
     @Test
     public void testTutorModeWithRandomCheckboxInDomain() {
         TestsPage testsPage = new HomePage(getPage(), getPlaywright())
