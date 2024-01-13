@@ -89,6 +89,14 @@ abstract class BaseLocator extends BasePage {
         }
     }
 
+    protected boolean waitForLocatorVisible(Locator locator) {
+        locator.waitFor();
+        if (locator.isVisible()) {
+            return true;
+        }
+        return false;
+    }
+
     public HomePage clickHomeMenu() {
         exactButton("Home").click();
         return new HomePage(getPage(), getPlaywright());
