@@ -8,8 +8,6 @@ import com.microsoft.playwright.options.AriaRole;
 
 abstract class BaseLocator extends BasePage {
 
-    private final Locator homeButton = getPage().getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Home").setExact(true));
-
     protected BaseLocator(Page page, Playwright playwright) {
         super(page, playwright);
     }
@@ -91,8 +89,18 @@ abstract class BaseLocator extends BasePage {
         }
     }
 
-    public HomePage getHomePage() {
-        homeButton.click();
+    public HomePage clickHomeButton() {
+        exactButton("Home").click();
         return new HomePage(getPage(), getPlaywright());
+    }
+
+    public FlashcardPage clickFlashcardButton() {
+        exactButton("Flashcards").click();
+        return new FlashcardPage(getPage(), getPlaywright());
+    }
+
+    public TestListPage clickTestsButton() {
+        exactButton("Tests").click();
+        return new TestListPage(getPage(), getPlaywright());
     }
 }

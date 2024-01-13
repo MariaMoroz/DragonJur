@@ -18,9 +18,9 @@ public class HomePage extends BaseLocator {
         return new TestListPage(getPage(), getPlaywright());
     }
 
-    public FlashcardsPage clickFlashcardsMenu() {
+    public FlashcardPage clickFlashcardsMenu() {
         flashcardsButton.click();
-        return new FlashcardsPage(getPage(), getPlaywright());
+        return new FlashcardPage(getPage(), getPlaywright());
     }
 
     public Locator getStudyThisButton() {
@@ -30,11 +30,10 @@ public class HomePage extends BaseLocator {
     public TestTutorPage initiateTest() {
 
         new HomePage(getPage(), getPlaywright())
-                .clickTestsMenu()
+                .clickTestsButton()
                 .cancelDialogIfVisible()
                 .clickDomainsButton()
                 .clickRandomCheckbox()
-                .clickTutorButton()
                 .inputNumberOfQuestions("1")
                 .clickGenerateAndStartButton();
 

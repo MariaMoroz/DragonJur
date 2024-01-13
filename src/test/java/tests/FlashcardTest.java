@@ -25,8 +25,7 @@ public class FlashcardTest extends BaseTest {
                 .endTestIfVisible()
                 .clickSkipButton()
                 .clickCloseTheTestButton()
-                .getHomePage()
-                .clickFlashcardsMenu()
+                .clickFlashcardButton()
                 .getNumberMarkedForRechecking();
 
         assertThat(actual).hasText(expectedResult);
