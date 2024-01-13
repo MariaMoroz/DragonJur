@@ -6,21 +6,9 @@ import com.microsoft.playwright.Playwright;
 
 public class HomePage extends BaseLocator {
     private final Locator studyThisButton = button("Study This");
-    private final Locator testsButton = exactButton("Tests");
-    private final  Locator flashcardsButton = button("Flashcards");
 
     public HomePage(Page page, Playwright playwright) {
         super(page, playwright);
-    }
-
-    public TestListPage clickTestsMenu() {
-        testsButton.click();
-        return new TestListPage(getPage(), getPlaywright());
-    }
-
-    public FlashcardPage clickFlashcardsMenu() {
-        flashcardsButton.click();
-        return new FlashcardPage(getPage(), getPlaywright());
     }
 
     public Locator getStudyThisButton() {
@@ -30,7 +18,7 @@ public class HomePage extends BaseLocator {
     public TestTutorPage initiateTest() {
 
         new HomePage(getPage(), getPlaywright())
-                .clickTestsButton()
+                .clickTestsMenu()
                 .cancelDialogIfVisible()
                 .clickDomainsButton()
                 .clickRandomCheckbox()

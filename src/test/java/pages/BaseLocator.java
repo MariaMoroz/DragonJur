@@ -89,17 +89,17 @@ abstract class BaseLocator extends BasePage {
         }
     }
 
-    public HomePage clickHomeButton() {
+    public HomePage clickHomeMenu() {
         exactButton("Home").click();
         return new HomePage(getPage(), getPlaywright());
     }
 
-    public FlashcardPage clickFlashcardButton() {
+    public FlashcardPage clickFlashcardMenu() {
         exactButton("Flashcards").click();
         return new FlashcardPage(getPage(), getPlaywright());
     }
 
-    public TestListPage clickTestsButton() {
+    public TestListPage clickTestsMenu() {
         exactButton("Tests").click();
         return new TestListPage(getPage(), getPlaywright());
     }

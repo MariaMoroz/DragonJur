@@ -13,7 +13,7 @@ public class FlashcardTest extends BaseTest {
     public void testUserCanMarkCardsForRechecking() {
 
         String numberOfCardsForReChecking = new HomePage(getPage(), getPlaywright())
-                .clickFlashcardsMenu()
+                .clickFlashcardMenu()
                 .getNumberMarkedForRechecking().innerText();
 
         String expectedResult = Integer.toString(parseInt(numberOfCardsForReChecking) + 1);
@@ -25,7 +25,7 @@ public class FlashcardTest extends BaseTest {
                 .endTestIfVisible()
                 .clickSkipButton()
                 .clickCloseTheTestButton()
-                .clickFlashcardButton()
+                .clickFlashcardMenu()
                 .getNumberMarkedForRechecking();
 
         assertThat(actual).hasText(expectedResult);
