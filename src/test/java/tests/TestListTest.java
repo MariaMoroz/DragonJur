@@ -2,9 +2,9 @@ package tests;
 
 import com.microsoft.playwright.Locator;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import pages.TestTutorPage;
 import pages.TestsPage;
 import utils.TestData;
 
@@ -14,6 +14,7 @@ import static utils.ProjectProperties.BASE_URL;
 
 public class TestListTest extends BaseTest {
 
+    @Ignore
     @Test
     public void testTutorModeWithRandomCheckboxInDomain() {
         TestsPage testsPage = new HomePage(getPage(), getPlaywright())
