@@ -3,12 +3,10 @@ package pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import utils.TestData;
 import utils.TestUtils;
-
 import java.util.List;
-
 import io.qameta.allure.Step;
-
 import static java.lang.Integer.parseInt;
 
 public class HomePage extends SideMenuPage {
@@ -24,8 +22,10 @@ public class HomePage extends SideMenuPage {
     private final Locator streaksModalWindow = locator("div[role='dialog']");
     private final List<Locator> listCheckboxes = checkBoxesAll("label:has(input)");
     private final Locator checkboxImage = locator("label:has(input) svg");
-
     private final int checkBoxNumber = TestUtils.getRandomInt(0, listCheckboxes.size());
+    private final Locator weakestExamAreasHeader = dialog().locator("span");
+    private final Locator weakestExamAreasModal = dialog();
+    private final Locator weakestExamAreasMessage = dialog().getByText(TestData.STUDY_THIS_MODAL_MESSAGE);
 
     public HomePage(Page page, Playwright playwright) {
         super(page, playwright);
@@ -154,5 +154,22 @@ public class HomePage extends SideMenuPage {
             }
         }
         return this;
+    }
+
+    public Locator getWeakestExamAreasModal() {
+        return weakestExamAreasModal;
+    }
+
+    public HomePage clickStudyThisButton() {
+        studyThisButton.click();
+        return this;
+    }
+
+    public  Locator getWeakestExamAreasHeader() {
+        return weakestExamAreasHeader;
+    }
+
+    public  Locator getWeakestExamAreasMessage() {
+        return weakestExamAreasMessage;
     }
 }

@@ -120,4 +120,15 @@ public class HomeTest extends BaseTest {
         Assert.assertTrue(allUnchecked, "All checkboxes are expected to be unchecked, but checked.");
         Assert.assertFalse(checkboxImage.isVisible(), "All images of checkboxes are expected to be not visible, but visible");
     }
+
+    @Test
+    public void testModalWindowStudyIsOpened() {
+        HomePage homePage = new HomePage(getPage(), getPlaywright())
+                .clickStudyThisButton();
+
+        assertThat(homePage.getWeakestExamAreasModal()).isVisible();
+        assertThat(homePage.getWeakestExamAreasHeader()).hasText(TestData.STUDY_THIS_MODAL_HEADER);
+        assertThat(homePage.getWeakestExamAreasMessage()).isVisible();
+    }
 }
+
