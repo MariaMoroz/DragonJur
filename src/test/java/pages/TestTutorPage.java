@@ -25,6 +25,9 @@ public class TestTutorPage extends SideMenuPage {
     private final Locator h3HeaderExplanationText = exactHeading("Explanation");
     private final Locator confirmButton = button("Confirm");
     private final Locator explanationTextSpan = getPage().locator("h3~div>span");
+    private final Locator nextQuestionButton = button("Next question");
+    private final Locator finishTestButton = button("Finish test");
+    private final Locator listOfIncorrectAnswers = locator("//label[not(contains(text(), 'Correct Answer'))]");
     private final Locator reportAProblemModal = dialog();
     private final Locator describeTheProblemTextarea = textbox();
     private final Locator sendButton = button("Send");
@@ -59,6 +62,10 @@ public class TestTutorPage extends SideMenuPage {
 
     public String getExplanationText() {
         return explanationTextSpan.innerText();
+    }
+
+    public Locator getListOfIncorrectAnswers() {
+        return listOfIncorrectAnswers;
     }
 
     public TestTutorPage clickAddToFlashCardButton() {
@@ -98,6 +105,23 @@ public class TestTutorPage extends SideMenuPage {
 
     public TestTutorPage clickConfirmButton() {
         confirmButton.click();
+        return this;
+    }
+
+
+    public void clickNextQuestionButton() {
+        nextQuestionButton.click();
+    }
+
+    public TestTutorPage clickFinishTestButton() {
+        finishTestButton.click();
+
+        return this;
+    }
+
+    public TestTutorPage clickRandomIncorrectAnswer() {
+        TestUtils.clickRandomElement(getListOfIncorrectAnswers());
+
         return this;
     }
 
