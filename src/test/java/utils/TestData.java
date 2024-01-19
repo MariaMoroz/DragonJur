@@ -28,5 +28,6 @@ public class TestData {
     public static final String REPORT_MESSAGE = "The report has been sent successfully";
     public static final String PRACTICE = "Practice";
     public static final String NOTHING_FOUND_MESSAGE = "Nothing found. Try to use other key words";
+    public static final String CORRECT_ANSWER_POINTS = "38";
 
 }
