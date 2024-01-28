@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 public final class TestListPage extends BaseTestsListPage<TestListPage> implements IRandom {
     private final Locator domainsButton = text("Domains");
+    private final Locator domainsCheckbox = locator("label.sc-gHLcSH.colYoX");
     private final Locator tutorButton = button("Tutor");
     private final Locator numberOfQuestionsInputField = locator("input[name = 'numberOfQuestions']");
     private final Locator chaptersButton = text("Chapters");
@@ -17,11 +18,11 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
     private final Locator startTestButton = exactButton("Start test");
     private final Locator startButton = exactButton("Start");
     private final Locator automationTestingForStatsText = text("Automation testing for stats");
-    private final Locator historyAndCivilizationForStatsText = text("History and Civilization for Stats");
-    private final List<Locator> allCheckboxes = allCheckboxes("label");
     private final Locator checkbox = locator("button:has(input[type='checkbox'])>div");
     private Locator activeCheckbox = checkbox.filter(new Locator.FilterOptions().setHasNot(locator("[disabled]")));
-    private final Locator generateAndStartButton = button("Generate & Start");
+    private final Locator statsTests = exactText("Stats");
+    private final List<Locator> allCheckboxes = allCheckboxes("div:has(button) label > span");
+    private final Locator markedNumber = locator("label:has(input[value=\"MARKED\"])>span");
 
     TestListPage(Page page) {
         super(page);
@@ -35,8 +36,18 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
 
     @Step("Click 'Domains' button if not active")
     public TestListPage clickDomainsButtonIfNotActive() {
+        waitWithTimeout(1000);
+        if (text("Please select subject").isVisible()) {
+            getPage().reload();
+            waitWithTimeout(2000);
+
+            domainsButton.click();
+        }
         if (!domainsButton.isChecked()) {
             domainsButton.click();
+            waitWithTimeout(2000);
+
+            getPage().reload();
         }
 
         return this;
@@ -111,10 +122,12 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
         return new TestTimedPage(getPage()).init();
     }
 
-//    public Locator getNumberMarked() {
-//
-//        return numberMarked;
-//    }
+    public int getMarkedNumber() {
+        waitWithTimeout(2000);
+        System.out.println(markedNumber.innerText());
+
+        return Integer.parseInt(markedNumber.innerText());
+    }
 
 //    public Locator checkIcon(String text) {
 //
@@ -128,7 +141,7 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
     }
 
     public TestListPage clickHistoryAndCivilizationForStatsCheckBox() {
-        historyAndCivilizationForStatsText.click();
+        statsTests.click();
 
         return this;
     }
@@ -141,7 +154,7 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
     }
 
     @Step("Click random checkbox and return related number of questions (for Bronze subscription)")
-    public int clickRandomActiveCheckboxAndReturnNumberOfQuestions() {
+    public int getNumberOfQuestionsForRandomCheckbox() {
         activeCheckbox = activeCheckbox.filter(new Locator.FilterOptions().setHasText(Pattern.compile("\\d+")));
         activeCheckbox.last().waitFor();
 
@@ -150,12 +163,5 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
         getPage().waitForTimeout(1000);
 
         return Integer.parseInt(activeCheckbox.nth(randomValue).textContent().replaceAll("[^\\d/]+", "").split("/")[0]);
-    }
-
-    @Step("Click 'Generate and Start' button")
-    public TestTutorPage clickGenerateAndStartButtonTutor() {
-        generateAndStartButton.click();
-
-        return new TestTutorPage(getPage()).init();
     }
 }

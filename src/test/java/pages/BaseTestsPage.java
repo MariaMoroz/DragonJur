@@ -9,10 +9,10 @@ import java.util.List;
 abstract class BaseTestsPage<TPage> extends BaseFooter<TPage> {
     private final Locator testQuestion = locator("form span");
     private final Locator questionMark = exactText("?");
-    private final Locator answerRadioButton = radio();
-    private final List<Locator> radioButtons = allRadioButtons();
+    private final List<Locator> radioButtons = allItems("input[type='radio']");
+//    private final List<Locator> radioButtons = allRadioButtons();
     private final Locator correctAnswer = text("Correct Answer");
-    private final Locator correctAnswerBackgroundColor = locator("[fill='#55B47D']");
+    private final Locator correctAnswerBackgroundColor55B47D = locator("[fill='#55B47D']");
     private final Locator h3Header = locator("div h3");
     private final Locator explanationHeader = exactHeading("Explanation");
     private final Locator explanationTextLocator = locator("h3~div>span");
@@ -25,11 +25,73 @@ abstract class BaseTestsPage<TPage> extends BaseFooter<TPage> {
         super(page);
     }
 
-//    public Locator getH3Header() {
-//
-//        return h3Header;
-//    }
-//
+    public List<Locator> getRadioButtons() {
+
+        return radioButtons;
+    }
+
+    public Locator getCorrectAnswer() {
+
+        return correctAnswer;
+    }
+
+    public Locator getCorrectAnswerBackgroundColor55B47D() {
+
+        return correctAnswerBackgroundColor55B47D;
+    }
+
+    public Locator getH3Header() {
+
+        return h3Header;
+    }
+
+    public Locator getExplanationHeader() {
+
+        return explanationHeader;
+    }
+
+    public Locator getExplanationTextLocator() {
+
+        return explanationTextLocator;
+    }
+
+    public Locator getConfirmButton() {
+
+        return confirmButton;
+    }
+
+    public Locator getNextQuestionButton() {
+
+        return nextQuestionButton;
+    }
+
+    public Locator getFinishTestButton() {
+
+        return finishTestButton;
+    }
+
+    public Locator getIncorrectAnswer() {
+
+        return incorrectAnswer;
+    }
+
+    @Step("Get test question")
+    public Locator getTestQuestion() {
+
+        return testQuestion;
+    }
+
+    @Step("Count answers radio buttons")
+    public int getAnswersCount() {
+
+        return radioButtons.size();
+    }
+
+    public Locator getQuestionMark() {
+
+        return questionMark;
+    }
+
 //    public Locator getCorrectAnswerBackgroundColor() {
 //
 //        return correctAnswerBackgroundColor;
@@ -50,21 +112,14 @@ abstract class BaseTestsPage<TPage> extends BaseFooter<TPage> {
 //        return answerRadioButton.count();
 //    }
 //
-    @Step("Get test question")
-    public Locator getTestQuestion() {
-
-        return testQuestion;
-    }
-
-    @Step("Count answers radio buttons")
-    public int getAnswersCount() {
-
-        return radioButtons.size();
-    }
+//    public int getAnswersCount() {
 //
-//    public Locator getQuestionMark() {
+//        return radioButtons.size();
+//    }
+
+//    public List<Locator> getTestAnswers() {
 //
-//        return questionMark;
+//        return radioButtons;
 //    }
 
 //    public Self clickCorrectAnswerRadioButton() {
