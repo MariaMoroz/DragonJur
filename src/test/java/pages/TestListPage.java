@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public final class TestListPage extends BaseTestsListPage<TestListPage> implements IRandom {
     private final Locator domainsButton = text("Domains");
-    private final Locator domainsCheckbox = locator("label.sc-gHLcSH.colYoX");
+    private final Locator domainsCheckbox = locator("input[name='domainsQuestions']");
     private final Locator tutorButton = button("Tutor");
     private final Locator numberOfQuestionsInputField = locator("input[name = 'numberOfQuestions']");
     private final Locator chaptersButton = text("Chapters");
@@ -28,6 +28,7 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
     private final Locator tostifyAlert = getPage().getByRole(AriaRole.ALERT).locator("div~div");
 
     private int randomNumber;
+    private int randomValue;
 
     TestListPage(Page page) {
         super(page);
@@ -89,10 +90,22 @@ public final class TestListPage extends BaseTestsListPage<TestListPage> implemen
         return this;
     }
 
-    @Step("Select a checkbox randomly and retrieve its name.")
-    public String clickRandomCheckboxAndReturnItsName() {
-        int randomValue = getRandomNumber(allCheckboxes);
+    @Step("Click random checkbox.")
+    public TestListPage clickCheckboxRandom() {
+        randomValue = getRandomNumber(allCheckboxes);
         allCheckboxes.get(randomValue).click();
+
+        return this;
+    }
+
+    @Step("Get random checkbox.")
+    public Locator getRandomCheckbox() {
+
+        return domainsCheckbox.nth(randomValue);
+    }
+
+    @Step("Retrieve random checkbox name.")
+    public String getRandomCheckboxName() {
 
         return allCheckboxes.get(randomValue).textContent();
     }
