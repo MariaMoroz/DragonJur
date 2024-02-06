@@ -1,13 +1,10 @@
 package pages;
 
-import com.microsoft.playwright.Frame;
 import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
 import utils.reports.LoggerUtils;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public final class StripeModal extends BaseModal<StripeModal> {
     private final Locator stripeDialog = dialog();
@@ -59,7 +56,7 @@ public final class StripeModal extends BaseModal<StripeModal> {
     @Step("Wait for Stripe element.")
     private FrameLocator getStripePaymentInputFields() {
         waitForPageLoad();
-        waitWithTimeout(10000);
+        waitWithTimeout(7000);
 
         FrameLocator stripePaymentFrame = getPage().frameLocator("__privateStripeFrame85718");
         LoggerUtils.logInfo("STRIPE FRAME: Stripe Payment form is visible (" + stripePaymentFrame + ")");
