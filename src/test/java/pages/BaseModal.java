@@ -10,6 +10,8 @@ abstract class BaseModal<TPage> extends BaseLocator<TPage> {
     private final Locator cancelButton = exactButton("Cancel");
     private final Locator gotItButton = exactButton("Got it");
     private final Locator yesButton = exactButton("Yes");
+    private final Locator kindaButton = exactButton("Kinda");
+    private final Locator noButton = exactButton("No");
     private final Locator skipButton = exactButton("Skip");
     private final Locator backButton = exactButton("Back");
     private final Locator okButton = exactButton("Ok");
@@ -48,6 +50,33 @@ abstract class BaseModal<TPage> extends BaseLocator<TPage> {
         return new TestTutorPage(getPage());
     }
 
+    @Step("Click 'Yes' button on dialog window.")
+    public FlashcardsPackIDPage clickYesToFlashcardsModalButton() {
+        if (dialog.isVisible() && yesButton.isVisible()) {
+            yesButton.click();
+        }
+
+        return new FlashcardsPackIDPage(getPage());
+    }
+
+    @Step("Click 'Kinda' button on dialog window.")
+    public FlashcardsPackIDPage clickKindaToFlashcardsModalButton() {
+        if (dialog.isVisible() && kindaButton.isVisible()) {
+            kindaButton.click();
+        }
+
+        return new FlashcardsPackIDPage(getPage());
+    }
+
+    @Step("Click 'No' button on dialog window.")
+    public FlashcardsPackIDPage clickNoToFlashcardsModalButton() {
+        if (dialog.isVisible() && noButton.isVisible()) {
+            noButton.click();
+        }
+
+        return new FlashcardsPackIDPage(getPage());
+    }
+
     @Step("Click 'Yes' button on dialog window if visible.")
     public CongratulationsModal clickYesToCongratulationButton() {
         if (dialog.isVisible() && yesButton.isVisible()) {
@@ -55,6 +84,13 @@ abstract class BaseModal<TPage> extends BaseLocator<TPage> {
         }
 
         return new CongratulationsModal(getPage());
+    }
+
+    @Step("Click 'Yes' button on dialog window if visible.")
+    public FlashcardPacksPage clickYesToFlashcardsButton() {
+        yesButton.click();
+
+        return new FlashcardPacksPage(getPage());
     }
 
     @Step("Click 'Skip' button on dialog window if visible.")
@@ -79,8 +115,10 @@ abstract class BaseModal<TPage> extends BaseLocator<TPage> {
     }
 
     @Step("Click 'Next' button on dialog pop-up.")
-    public void clickNextButton() {
+    public CongratulationsModal clickNextButton() {
         nextButton.click();
+
+        return new CongratulationsModal(getPage());
     }
 
     @Step("Click 'Ok' button on dialog pop-up.")
@@ -88,5 +126,12 @@ abstract class BaseModal<TPage> extends BaseLocator<TPage> {
         okButton.click();
 
         return new TestResultPage(getPage()).init();
+    }
+
+    @Step("Click 'Ok' button on dialog pop-up.")
+    public FlashcardPacksPage clickOkToFlashcardsButton() {
+        okButton.click();
+
+        return new FlashcardPacksPage(getPage()).init();
     }
 }

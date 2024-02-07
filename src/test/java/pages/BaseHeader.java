@@ -53,6 +53,20 @@ abstract class BaseHeader<TPage> extends BaseModal<TPage> {
         return new TestTutorPage(getPage()).init();
     }
 
+    @Step("Click 'End' button.")
+    public CongratulationsModal clickEndButtonToCongratulationsModal() {
+        endButton.click();
+
+        return new CongratulationsModal(getPage()).init();
+    }
+
+    @Step("Click 'End' button.")
+    public FlashcardsPackIDPage clickEndButtonToFlashcardsPackID() {
+        endButton.click();
+
+        return new FlashcardsPackIDPage(getPage()).init();
+    }
+
     public String getPackName() {
         waitForLocator(packName, 5000);
         String flashcardHeader = packName.innerText();

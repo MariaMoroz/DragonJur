@@ -11,6 +11,7 @@ abstract class BaseFooter<TPage> extends BaseHeader<TPage> {
     private final Locator removeFromFlashcardsButton = exactButton("Remove from flashcards");
     private final Locator resetResultsButton = exactButton("Reset results");
     private final Locator removeFromMarkedButton = exactButton("Remove from marked");
+    private final Locator showAllFlashcardsButton = exactButton("Show all flashcards");
 
     BaseFooter(Page page) {
         super(page);
@@ -55,6 +56,13 @@ abstract class BaseFooter<TPage> extends BaseHeader<TPage> {
         reportAProblemButton.click();
 
         return new ReportAProblemModal(getPage());
+    }
+
+    @Step("Click 'Show all flashcards' button.")
+    public FlashcardsPackIDPage clickShowAllFlashcardsButton() {
+        showAllFlashcardsButton.click();
+
+        return new FlashcardsPackIDPage(getPage());
     }
 
 }

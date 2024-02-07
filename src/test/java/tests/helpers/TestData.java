@@ -64,6 +64,8 @@ public final class TestData {
     public static final int QUESTIONS_PER_TEST = 80;
     public static final int QUESTIONS_PER_STUDY = 45;
     public static final int QUESTIONS_PER_DOMAIN = 20;
+    public static final String FIRST_CARD_TEXT = "soup";
+    public static final String NEXT_CARD_TEXT = "Panton";
 
     public static final String[] STACKS_NAMES = {
             "Rustic Granite Pants",
@@ -82,6 +84,15 @@ public final class TestData {
                 {"Mnemonic cards", ProjectProperties.BASE_URL + MNEMONIC_CARDS_LIST_END_POINT},
                 {"Performance", ProjectProperties.BASE_URL + PERFORMANCE_END_POINT},
                 {"Profile", ProjectProperties.BASE_URL + PROFILE_END_POINT}
+        };
+    }
+
+    @DataProvider
+    public static Object[][] yesKindaNoButtons() {
+        return new Object[][]{
+                {"Yes"},
+                {"Kinda"},
+                {"No"}
         };
     }
 }

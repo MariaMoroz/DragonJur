@@ -18,6 +18,9 @@ public final class HomePage extends BaseSideMenu<HomePage> implements IRandom {
     private final Locator streaksButton = locator("button>svg+p").last();
     private final List<Locator> allCheckboxes = allCheckboxes("label");
     private final Locator streakDaysModalWindowText = locator("div[role='dialog']>div>p");
+    private final Locator yesPerformance = locator("//div/span[text()='Yes']/parent::div/div/span[2]");
+    private final Locator kindaPerformance = locator("//div/span[text()='Kinda']/parent::div/div/span[2]");
+    private final Locator noPerformance = locator("//div/span[text()='No']/parent::div/div/span[2]");
 
     private final int randomIndex = getRandomInt(0, allCheckboxes.size());
 
@@ -179,5 +182,23 @@ public final class HomePage extends BaseSideMenu<HomePage> implements IRandom {
         waitWithTimeout(timeout);
         getPage().reload();
         waitWithTimeout(2000);
+    }
+
+    public String getYesPerformanceAmount() {
+        waitForLocator(yesPerformance, 2000);
+
+        return yesPerformance.innerText();
+    }
+
+    public String getKindaPerformanceAmount() {
+        waitForLocator(kindaPerformance, 2000);
+
+        return kindaPerformance.innerText();
+    }
+
+    public String getNoPerformanceAmount() {
+        waitForLocator(noPerformance, 2000);
+
+        return noPerformance.innerText();
     }
 }

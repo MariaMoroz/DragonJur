@@ -287,19 +287,19 @@ public class TestTutorTest extends BaseTest {
         Allure.step("Assert that points on 'Congratulations' modal window (" + pointsOnModalAfter + ") after test " +
                 " are greater or equals to Main Section Points before test (" + mainSectionPointsBefore + ").");
         Assert.assertTrue(
-                sideMenuPointsBefore <= mainSectionPointsBefore,
+                mainSectionPointsBefore <= pointsOnModalAfter,
                 "If FAIL: On Congratulation pop-up, expected points after test does NOT increased."
         );
 
         congratulationsModal
                 .clickNextButton();
 
-        final int secondModalPointsAfter = congratulationsModal.getTestPoints();
+        final int secondModalPointsAfter = congratulationsModal.getPoints();
 
         Allure.step("Assert that points on second 'Congratulations' modal window (" + secondModalPointsAfter
                 + ") after test " + " are greater or equals to Main Section Points before test ("
                 + mainSectionPointsBefore + ").");
-        Assert.assertTrue(mainSectionPointsBefore < secondModalPointsAfter,
+        Assert.assertTrue(mainSectionPointsBefore <= secondModalPointsAfter,
                 "If FAIL: On Congratulation second pop-up, expected points after test does NOT increased.");
 
         congratulationsModal
